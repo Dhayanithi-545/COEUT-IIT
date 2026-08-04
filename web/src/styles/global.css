@@ -1,0 +1,253 @@
+@import './variables.css';
+@import './megamenu.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-family: var(--font-body);
+  background-color: var(--coe-bg);
+  color: var(--coe-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  color: var(--coe-maroon-dark);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  text-align: left;
+}
+
+a {
+  color: var(--coe-maroon);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+a:hover {
+  color: var(--coe-maroon-light);
+}
+
+/* Full Widescreen Containers */
+.container {
+  width: 95%;
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--coe-bg);
+}
+
+.main-content {
+  flex: 1;
+  width: 100%;
+  padding-bottom: 4rem;
+}
+
+/* Section Titles & Cursive Accents */
+.page-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--coe-maroon-dark);
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.page-subtitle {
+  font-size: 1.1rem;
+  color: var(--coe-text-muted);
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--coe-maroon-dark);
+  margin-top: 1rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-align: left;
+}
+
+.accent-cursive {
+  font-family: var(--font-accent);
+  color: var(--coe-gold-muted);
+  font-weight: 400;
+}
+
+/* Smooth Modern Cards */
+.coe-card {
+  background: var(--coe-surface-card);
+  border: 1px solid var(--coe-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 1.5rem;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+}
+
+.coe-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  border-color: rgba(212, 160, 23, 0.4);
+}
+
+/* Data Tables */
+.coe-table-wrapper {
+  overflow-x: auto;
+  background: var(--coe-surface);
+  border: 1px solid var(--coe-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  margin: 1rem 0;
+  width: 100%;
+}
+
+.coe-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.coe-table th {
+  background-color: var(--coe-surface-alt);
+  color: var(--coe-maroon-dark);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  padding: 1rem 1.25rem;
+  border-bottom: 2px solid var(--coe-border);
+  white-space: nowrap;
+}
+
+.coe-table td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--coe-border);
+  color: var(--coe-text);
+  text-align: left;
+}
+
+.coe-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.coe-table tbody tr:hover {
+  background-color: var(--coe-surface-alt);
+}
+
+/* Buttons */
+.coe-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.35rem;
+  font-size: 0.925rem;
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: none;
+  font-family: var(--font-body);
+}
+
+.coe-btn-primary {
+  background: linear-gradient(135deg, var(--coe-maroon) 0%, var(--coe-maroon-dark) 100%);
+  color: var(--coe-text-on-maroon);
+  box-shadow: 0 4px 12px rgba(122, 31, 31, 0.2);
+}
+
+.coe-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(122, 31, 31, 0.3);
+  color: #ffffff;
+}
+
+.coe-btn-secondary {
+  background-color: var(--coe-surface-alt);
+  color: var(--coe-maroon-dark);
+  border: 1px solid var(--coe-border);
+}
+
+.coe-btn-secondary:hover {
+  background-color: var(--coe-gold-light);
+  border-color: var(--coe-gold);
+  color: var(--coe-maroon-dark);
+}
+
+/* Badges */
+.coe-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  background-color: var(--coe-surface-alt);
+  color: var(--coe-maroon);
+  border: 1px solid var(--coe-border);
+}
+
+/* Inputs */
+.coe-input {
+  width: 100%;
+  padding: 0.75rem 1.15rem;
+  font-size: 0.95rem;
+  border: 1px solid var(--coe-border);
+  border-radius: var(--radius-pill);
+  background: var(--coe-surface);
+  color: var(--coe-text);
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.coe-input:focus {
+  border-color: var(--coe-gold);
+  box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.15);
+}
+
+/* Video Responsive */
+.video-responsive {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--coe-border);
+}
+
+.video-responsive iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
