@@ -187,37 +187,31 @@ function MegaMenuPanel({ item, activeFlyoutPath, onHoverPath, onNavigate, panelR
 }
 
 function MobileNavSection({ item, onNavigate, depth = 0 }) {
-  const [expanded, setExpanded] = useState(false);
+  const location = useLocation();
+  const [expanded, setExpanded] = useState(depth === 0);
   const href = buildNavHref(item);
   const expandable = hasChildren(item) || (item.sections && item.sections.length > 0);
 
   if (item.sections) {
     return (
-      <div className="border-b border-[#E2DCC9]">
+      <div className="mobile-nav-category-block">
         <button
           type="button"
           className="mobile-nav-section-btn"
           onClick={() => setExpanded(!expanded)}
           aria-expanded={expanded}
         >
-          <span className="flex items-center gap-2">
-            {item.icon && <item.icon size={16} className="text-[#7A1F1F]" />}
-            {item.label}
+          <span className="flex items-center gap-2.5">
+            {item.icon && <item.icon size={18} className="text-[#7A1F1F]" />}
+            <span>{item.label}</span>
           </span>
-          <ChevronRight size={16} className={`transition-transform ${expanded ? 'rotate-90' : ''}`} />
+          <ChevronRight size={16} className={`transition-transform duration-200 ${expanded ? 'rotate-90 text-[#7A1F1F]' : 'text-[#767676]'}`} />
         </button>
         {expanded && (
-          <div className="mobile-nav-sublist pl-4">
+          <div className="mobile-nav-sublist">
             {item.sections.map((section) => (
               <MobileNavSection key={section.id} item={section} onNavigate={onNavigate} depth={depth + 1} />
             ))}
-            <Link
-              to={href}
-              onClick={onNavigate}
-              className="mobile-nav-link font-semibold text-[#7A1F1F]"
-            >
-              View all {item.label}
-            </Link>
           </div>
         )}
       </div>
@@ -226,31 +220,33 @@ function MobileNavSection({ item, onNavigate, depth = 0 }) {
 
   if (expandable && item.children) {
     return (
-      <div style={{ paddingLeft: depth * 12 }}>
-        <button
-          type="button"
-          className="flex w-full items-center justify-between px-4 py-3 text-left text-sm font-medium text-[#2B2B2B]"
-          onClick={() => setExpanded(!expanded)}
-          aria-expanded={expanded}
-        >
-          {item.label}
-          <ChevronRight size={14} className={`transition-transform ${expanded ? 'rotate-90' : ''}`} />
-        </button>
-        {expanded && item.children.map((child) => (
-          <MobileNavSection key={child.id} item={child} onNavigate={onNavigate} depth={depth + 1} />
-        ))}
+      <div className="mobile-nav-section-group">
+        <div className="mobile-section-header">
+          {item.icon && <item.icon size={15} className="text-[#7A1F1F]" />}
+          <span>{item.label}</span>
+        </div>
+        <div className="mobile-section-children">
+          {item.children.map((child) => (
+            <MobileNavSection key={child.id} item={child} onNavigate={onNavigate} depth={depth + 1} />
+          ))}
+        </div>
       </div>
     );
   }
+
+  const isCurrentActive =
+    (item.hash && location.hash === `#${item.hash}`) ||
+    (!item.hash && location.pathname === item.path);
 
   return (
     <Link
       to={href}
       onClick={onNavigate}
-      className="mobile-nav-link"
-      style={{ paddingLeft: 16 + depth * 12 }}
+      className={`mobile-nav-link ${isCurrentActive ? 'is-active' : ''}`}
+      style={{ paddingLeft: depth > 1 ? `${depth * 12 + 16}px` : '1.25rem' }}
     >
-      {item.label}
+      {item.icon && <item.icon size={16} className="mobile-link-icon" />}
+      <span>{item.label}</span>
     </Link>
   );
 }

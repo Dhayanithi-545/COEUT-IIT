@@ -42,7 +42,7 @@ export const About = () => {
   return (
     <div className="home-about-page">
       {/* Cityscape Dark Navy Hero Section */}
-      <HeroSection />
+      {activeTab === 'overview' && <HeroSection />}
 
       {/* Main Content Area */}
       <main className="container" style={{ paddingBottom: '4rem', paddingTop: '2rem' }}>

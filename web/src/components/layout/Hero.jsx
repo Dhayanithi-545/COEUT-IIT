@@ -47,10 +47,25 @@ export const Hero = ({ title, subtitle }) => {
           margin-bottom: 0.25rem;
           line-height: 1.25;
         }
-        .hero-subtitle {
-          font-size: 1rem;
-          color: var(--coe-text-muted);
-          line-height: 1.5;
+        @media (max-width: 768px) {
+          .hero-clean-box {
+            padding: 1.25rem 1.25rem;
+            border-left-width: 4px;
+          }
+          .hero-title {
+            font-size: 1.5rem;
+          }
+          .hero-subtitle {
+            font-size: 0.9rem;
+          }
+        }
+        @media (max-width: 480px) {
+          .hero-badge-tag {
+            font-size: 0.725rem;
+          }
+          .hero-title {
+            font-size: 1.3rem;
+          }
         }
       `}</style>
     </div>

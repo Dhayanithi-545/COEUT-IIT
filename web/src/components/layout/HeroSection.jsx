@@ -173,11 +173,42 @@ export const HeroSection = () => {
         }
 
         @media (max-width: 768px) {
+          .hero-second-root {
+            padding-top: 2rem;
+            padding-bottom: 2.25rem;
+          }
           .hero-title {
-            font-size: 2.1rem;
+            font-size: 2rem;
+          }
+          .hero-desc {
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
           }
           .hero-stats-grid {
             grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .hero-title {
+            font-size: 1.65rem;
+          }
+          .hero-gold-tag {
+            font-size: 0.725rem;
+          }
+          .hero-stat-card {
+            gap: 0.6rem;
+          }
+          .stat-icon-badge {
+            width: 38px;
+            height: 38px;
+          }
+          .stat-val {
+            font-size: 1.2rem;
+          }
+          .stat-lbl {
+            font-size: 0.7rem;
           }
         }
       `}</style>
