@@ -111,7 +111,7 @@ const Overview = () => {
       <div className="overview-main-section">
         <div className="overview-text-block">
           <span className="official-tag">OFFICIAL RESEARCH CENTER • IIT MADRAS</span>
-          <h2 className="overview-heading">Center of Excellence in Urban Transport (COE-UT)</h2>
+          {/* <h2 className="overview-heading">Center of Excellence in Urban Transport (COE-UT)</h2> */}
           <p className="overview-p">
             A <strong>Centre of Excellence in Urban Transport</strong> has been established at <strong>IIT Madras in 2009</strong> under the auspices of the Ministry of Urban Development (MoUD), Ministry of Electronics & IT (MeitY), and Ministry of Education (MoE), Government of India.
           </p>
@@ -125,20 +125,47 @@ const Overview = () => {
       </div>
 
       {/* Video Highlight Block */}
-      <div className="video-highlight-box coe-card">
-        <div className="video-text-content">
-          <span className="video-badge"><Video size={16} /> Recent Centre Activities</span>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+
+        {/* Left column: text content */}
+        <div className="flex flex-col gap-4 order-2 lg:order-1">
           <h3>Watch Centre of Excellence Highlights Video</h3>
-          <p>Explore recent research breakthroughs, state-of-the-art ITS laboratory demonstrations, field deployment in Chennai corridors, and continuing education programs.</p>
-          <a
-            href="https://www.youtube.com/watch?v=sYCTcf47Nc8"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="coe-btn coe-btn-primary"
-          >
-            <Video size={18} /> Watch Video on YouTube <ExternalLink size={14} />
-          </a>
+          <p>
+            Explore recent research breakthroughs, state-of-the-art ITS laboratory
+            demonstrations, field deployment in Chennai corridors, and continuing
+            education programs.
+          </p>
+
+          {/* structural addition: quick highlight list instead of plain paragraph-only */}
+          <ul className="flex flex-col gap-2">
+            <li className="flex items-center gap-2">
+              <span>Research Breakthroughs</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <span>ITS Lab Demonstrations</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <span>Chennai Corridor Deployment</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <span>Continuing Education Programs</span>
+            </li>
+          </ul>
         </div>
+
+        {/* Right column: video, responsive aspect-ratio wrapper */}
+        <div className="order-1 lg:order-2">
+          <div className="relative w-full aspect-video overflow-hidden rounded-lg">
+            <iframe
+              className="absolute inset-0 w-full h-full"
+              src="https://www.youtube.com/embed/sYCTcf47Nc8"
+              title="Centre of Excellence Highlights"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        </div>
+
       </div>
 
       {/* Thrust Areas */}

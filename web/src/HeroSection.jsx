@@ -12,10 +12,10 @@ export const HeroSection = () => {
 
       <div className="container hero-container-inner">
         <div className="hero-main-content">
-          <span className="hero-gold-tag">DEPARTMENT OF CIVIL ENGINEERING • IIT MADRAS</span>
           <h1 className="hero-title-large">
             Center of Excellence in <span className="gold-text">Urban Transport</span>
           </h1>
+          <span className="hero-gold-tag">DEPARTMENT OF CIVIL ENGINEERING • IIT MADRAS</span>
           <p className="hero-desc">
             A national research and development center sponsored by the Ministry of Urban Development, Ministry of Electronics & IT, and Ministry of Education, Government of India.
           </p>
