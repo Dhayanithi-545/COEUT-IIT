@@ -40,16 +40,9 @@ export const People = () => {
 
   return (
     <div className="people-page">
-      <div className="page-header-strip">
-        <div className="container">
-          <span className="header-badge">Center of Excellence in Urban Transport • IIT Madras</span>
-          <h1 className="page-header-title">People & Research Team Directory</h1>
-          <p className="page-header-sub">Multi-institutional and multi-disciplinary team comprising faculty members, research scholars, and project administrative staff.</p>
-        </div>
-      </div>
 
       {/* Subtab Navigation Bar */}
-      <div className="subtab-bar-root">
+      {/* <div className="subtab-bar-root">
         <div className="container">
           <div className="subtab-nav-wrapper">
             {peopleTabs.map((tab) => {
@@ -68,7 +61,17 @@ export const People = () => {
             })}
           </div>
         </div>
+      </div> */}
+
+      <div className="page-header-strip">
+        <div className="container">
+          <span className="header-badge">Center of Excellence in Urban Transport • IIT Madras</span>
+          <h1 className="page-header-title">People & Research Team Directory</h1>
+          <p className="page-header-sub">Multi-institutional and multi-disciplinary team comprising faculty members, research scholars, and project administrative staff.</p>
+        </div>
       </div>
+
+
 
       <main className="container" style={{ paddingBottom: '4rem', paddingTop: '2rem' }}>
         {renderContent()}

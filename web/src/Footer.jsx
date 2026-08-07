@@ -10,7 +10,7 @@ export const Footer = () => {
       <div className="container footer-container">
         <div className="footer-col">
           <h3 className="footer-brand-title">Center of Excellence in Urban Transport</h3>
-          <p className="footer-dept">Department of Civil Engineering • <span className="accent-cursive" style={{ color: 'var(--coe-gold-light)' }}>IIT Madras</span></p>
+          <p className="footer-dept">Department of Civil Engineering &middot; <span className="accent-cursive" style={{ color: 'var(--coe-gold-light)' }}>IIT Madras</span></p>
           <p className="footer-sponsors-text">Sponsored by Ministry of Urban Development, Ministry of Electronics & IT, and Ministry of Education, Government of India.</p>
         </div>
 
@@ -21,16 +21,16 @@ export const Footer = () => {
             <li><Link to="/research">Research & Corridors</Link></li>
             <li><Link to="/labs">ITS & Simulation Laboratories</Link></li>
             <li><Link to="/people">Faculty & Staff Directory</Link></li>
-            <li><Link to="/downloads">Downloads & Cyclo Help Software</Link></li>
+            <li><Link to="/downloads">Downloads & Software Repositories</Link></li>
           </ul>
         </div>
 
         <div className="footer-col">
-          <h4 className="footer-heading">Location</h4>
+          <h4 className="footer-heading">Location & Contact</h4>
           <div className="footer-contacts">
             <div className="contact-item">
-              <MapPin size={16} className="contact-icon" />
-              <span>Department of Civil Engineering, IIT Madras</span>
+              <MapPin size={18} className="contact-icon" />
+              <span>Department of Civil Engineering, IIT Madras, Chennai - 600036</span>
             </div>
           </div>
         </div>
@@ -38,7 +38,7 @@ export const Footer = () => {
 
       <div className="footer-bottom-bar">
         <div className="container footer-bottom-inner">
-          <p>&copy; {currentYear} Center of Excellence in Urban Transport, IIT Madras.</p>
+          <p>&copy; {currentYear} Center of Excellence in Urban Transport, IIT Madras. All rights reserved.</p>
           <div className="footer-ext-links">
             <a href="https://www.iitm.ac.in" target="_blank" rel="noopener noreferrer">
               IIT Madras Portal <ExternalLink size={12} />

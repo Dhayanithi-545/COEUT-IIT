@@ -74,7 +74,7 @@ export const About = () => {
   return (
     <div className="about-page">
 
-      {/* Subtab Navigation Bar */}
+      {/* Subtab Navigation Bar
       <div className="subtab-bar-root">
         <div className="container">
           <div className="subtab-nav-wrapper">
@@ -94,7 +94,7 @@ export const About = () => {
             })}
           </div>
         </div>
-      </div>
+      </div> */}
       {activeSection === 'overview' && <HeroSection />}
 
 
@@ -129,7 +129,7 @@ const Overview = () => {
 
         {/* Left column: text content */}
         <div className="flex flex-col gap-4 order-2 lg:order-1">
-          <h3>Watch Centre of Excellence Highlights Video</h3>
+          <h3 className='official-tag' >Watch Centre of Excellence Highlights Video</h3>
           <p>
             Explore recent research breakthroughs, state-of-the-art ITS laboratory
             demonstrations, field deployment in Chennai corridors, and continuing

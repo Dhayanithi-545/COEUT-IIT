@@ -42,16 +42,9 @@ export const Labs = () => {
 
   return (
     <div className="labs-page">
-      <div className="page-header-strip">
-        <div className="container">
-          <span className="header-badge">Center of Excellence in Urban Transport • IIT Madras</span>
-          <h1 className="page-header-title">Laboratories & State-of-the-Art Research Facilities</h1>
-          <p className="page-header-sub">National testbeds for ITS traffic sensing, human-in-the-loop driving simulation, connected autonomous vehicles, and sustainable freight logistics.</p>
-        </div>
-      </div>
 
       {/* Subtab Navigation Bar */}
-      <div className="subtab-bar-root">
+      {/* <div className="subtab-bar-root">
         <div className="container">
           <div className="subtab-nav-wrapper">
             {labTabs.map((tab) => {
@@ -70,7 +63,17 @@ export const Labs = () => {
             })}
           </div>
         </div>
+      </div> */}
+
+      <div className="page-header-strip">
+        <div className="container">
+          <span className="header-badge">Center of Excellence in Urban Transport • IIT Madras</span>
+          <h1 className="page-header-title">Laboratories & State-of-the-Art Research Facilities</h1>
+          <p className="page-header-sub">National testbeds for ITS traffic sensing, human-in-the-loop driving simulation, connected autonomous vehicles, and sustainable freight logistics.</p>
+        </div>
       </div>
+
+
 
       <main className="container page-content" style={{ paddingBottom: '4rem', paddingTop: '2rem' }}>
         {selectedLab ? (
@@ -89,38 +92,52 @@ export const Labs = () => {
 
 const LabDetailCard = ({ lab }) => {
   return (
-    <div className="coe-card lab-main-card">
-      <div className="lab-badge-tag">{lab.shortName}</div>
-      <h2 className="lab-title">{lab.name}</h2>
-      <p className="lab-tagline">{lab.tagline}</p>
-      <p className="lab-desc">{lab.description}</p>
+    <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12">
+      {/* Left: identity panel, sticky while capabilities scroll */}
+      <div className="lg:sticky lg:top-24 lg:self-start flex flex-col gap-4">
+        <div className="lab-badge-tag w-fit">{lab.shortName}</div>
+        <h2 className="lab-title">{lab.name}</h2>
+        <p className="lab-tagline">{lab.tagline}</p>
+        <p className="lab-desc">{lab.description}</p>
+      </div>
 
-      <h3 className="cap-heading">Key Laboratory Capabilities & Facilities:</h3>
-      <ul className="cap-list">
-        {lab.capabilities.map((cap, i) => (
-          <li key={i}>
-            <CheckCircle2 size={18} className="cap-icon" /> <span>{cap}</span>
-          </li>
-        ))}
-      </ul>
+      {/* Right: capabilities as a two-col checklist, not stacked in a box */}
+      <div className="flex flex-col gap-6">
+        <h3 className="cap-heading">Key Laboratory Capabilities & Facilities</h3>
+        <div className="grid sm:grid-cols-2 gap-x-8 gap-y-5">
+          {lab.capabilities.map((cap, i) => (
+            <div key={i} className="flex items-start gap-3">
+              <CheckCircle2 size={18} className="cap-icon shrink-0 mt-0.5" />
+              <span>{cap}</span>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
 
 const HardwareSection = () => {
   return (
-    <div className="hardware-root">
-      <div className="section-intro-card coe-card">
+    <div className="flex flex-col gap-8">
+      {/* Header lives in the page flow, not inside a card */}
+      <div className="max-w-2xl flex flex-col gap-3">
         <h2>Hardware Equipment & Sensing Infrastructure</h2>
         <p>State-of-the-art field sensors, GPS units, radar detectors, video loggers, and traffic counters deployed by the Centre:</p>
       </div>
 
-      <div className="hardware-grid">
+      {/* Equipment as a numbered, divided row list — reads like a spec sheet */}
+      <div className="flex flex-col divide-y">
         {hardwareEquipment.map((hw, idx) => (
-          <div key={idx} className="coe-card hw-card">
-            <div className="hw-badge">{hw.qty}</div>
-            <h3 className="hw-title">{hw.name}</h3>
-            <p className="hw-desc">{hw.desc}</p>
+          <div key={idx} className="grid grid-cols-[auto_1fr_auto] items-center gap-6 py-5">
+            <span className="hw-index text-2xl font-semibold opacity-40">
+              {String(idx + 1).padStart(2, '0')}
+            </span>
+            <div className="flex flex-col gap-1">
+              <h3 className="hw-title">{hw.name}</h3>
+              <p className="hw-desc">{hw.desc}</p>
+            </div>
+            <span className="hw-badge shrink-0">{hw.qty}</span>
           </div>
         ))}
       </div>
@@ -130,28 +147,37 @@ const HardwareSection = () => {
 
 const SoftwareSection = () => {
   return (
-    <div className="software-root">
-      <div className="section-intro-card coe-card">
+    <div className="flex flex-col gap-12">
+      <div className="max-w-2xl flex flex-col gap-3">
         <h2>Software Suite for Traffic Management & Modeling</h2>
         <p>Advanced commercial and in-house transportation planning, traffic simulation, and optimization software suite available at the ITS Lab:</p>
       </div>
 
-      {/* MCME Highlight */}
-      <div className="coe-card mcme-highlight-card">
-        <span className="mcme-badge">IIT MADRAS IN-HOUSE SOFTWARE</span>
-        <h3>MCME (Manual Count Made Easy)</h3>
-        <p>
-          Data extraction from video has always been a tedious task for transportation engineers. Developed at IIT Madras, <strong>MCME</strong> is a graphical user interface working on the principle of speech recognition to effortlessly record vehicle counts from video recordings.
-        </p>
-        <div className="mcme-actions">
-          <button type="button" className="coe-btn coe-btn-primary"><Download size={16} /> Download MCME V2 Software</button>
-          <button type="button" className="coe-btn coe-btn-outline"><Download size={16} /> Download MCME User Manual</button>
+      {/* MCME promoted to a featured split hero instead of a card */}
+      <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-10 items-center border-t border-b py-10">
+        <div className="flex flex-col gap-4">
+          <span className="mcme-badge w-fit">IIT MADRAS IN-HOUSE SOFTWARE</span>
+          <h3>MCME (Manual Count Made Easy)</h3>
+          <p>
+            Data extraction from video has always been a tedious task for transportation engineers.
+            Developed at IIT Madras, <strong>MCME</strong> is a graphical user interface working on the
+            principle of speech recognition to effortlessly record vehicle counts from video recordings.
+          </p>
+        </div>
+        <div className="flex flex-col gap-3">
+          <button type="button" className="coe-btn coe-btn-primary w-full justify-center">
+            <Download size={16} /> Download MCME V2 Software
+          </button>
+          <button type="button" className="coe-btn coe-btn-outline w-full justify-center">
+            <Download size={16} /> Download MCME User Manual
+          </button>
         </div>
       </div>
 
-      <div className="software-grid">
+      {/* Remaining tools as a compact, divided two-column list */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8">
         {softwareList.map((sw, idx) => (
-          <div key={idx} className="coe-card sw-card">
+          <div key={idx} className="flex flex-col gap-1 pb-4 border-b">
             <h3 className="sw-title">{sw.name}</h3>
             <p className="sw-desc">{sw.desc}</p>
           </div>
@@ -159,4 +185,5 @@ const SoftwareSection = () => {
       </div>
     </div>
   );
+
 };

@@ -58,11 +58,11 @@ export const Navbar = () => {
       {/* Brand row */}
       <div className="site-header__brand-row">
         <div className="container site-header__brand-inner">
-          <Link to="/about" className="brand flex items-center gap-4 sm:gap-6 text-decoration-none mr-auto">
+          <Link to="/about" className="brand flex items-center gap-4 sm:gap-6 text-decoration-none text-left items-start mr-auto">
             <img src={iitmLogo} alt="IIT Madras Logo" className="brand__logo w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 object-contain shrink-0 transition-transform duration-200 hover:scale-105" />
-            <div className="brand__text flex flex-col justify-center">
-              <span className="brand__title font-['Outfit'] font-extrabold text-xl sm:text-2xl md:text-3xl lg:text-[28px] text-[#7A1F1F] tracking-tight leading-tight">Center of Excellence in Urban Transport</span>
-              <span className="brand__subtitle font-['Jost'] font-bold text-xs sm:text-sm md:text-base lg:text-[15px] text-[#5C1717] uppercase tracking-wider mt-1">Department of Civil Engineering &middot; IIT Madras</span>
+            <div className="brand__text flex flex-col justify-center items-start text-left">
+              <span className="brand__title font-['Outfit'] font-extrabold text-xl sm:text-2xl md:text-3xl lg:text-[28px] text-[#7A1F1F] tracking-tight leading-tight text-left">Center of Excellence in Urban Transport</span>
+              <span className="brand__subtitle font-['Jost'] font-bold text-xs sm:text-sm md:text-base lg:text-[15px] text-[#5C1717] uppercase tracking-wider mt-1 text-left">Department of Civil Engineering &middot; IIT Madras</span>
             </div>
           </Link>
 
@@ -74,10 +74,10 @@ export const Navbar = () => {
                 <path d="M14 30 C10 20, 12 10, 20 5 C28 10, 30 20, 26 30 Z" />
               </svg>
             </span>
-            <div className="sponsor-badge__text">
-              <span className="sponsor-badge__label">Sponsored by</span>
-              <span className="sponsor-badge__names">MoUD &middot; MeitY &middot; MoE</span>
-              <span className="sponsor-badge__govt">Government of India</span>
+            <div className="sponsor-badge__text text-left">
+              <span className="sponsor-badge__label text-left">Sponsored by</span>
+              <span className="sponsor-badge__names text-left">MoUD &middot; MeitY &middot; MoE</span>
+              <span className="sponsor-badge__govt text-left">Government of India</span>
             </div>
           </div>
 
@@ -95,8 +95,8 @@ export const Navbar = () => {
 
       {/* Menu row */}
       <nav className="site-nav" aria-label="Main navigation">
-        <div className="container">
-          <ul className="site-nav__list">
+        <div className="container flex justify-center">
+          <ul className="site-nav__list flex justify-center items-center">
             {navigationItems.map((item) => {
               const Icon = item.icon;
               const isOpen = openMenu === item.id;
@@ -182,64 +182,111 @@ export const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile drawer */}
+      {/* Mobile backdrop & right sliding drawer */}
       {mobileOpen && (
-        <div className="mobile-drawer">
-          <ul className="mobile-drawer__list">
-            {navigationItems.map((item) => {
-              const Icon = item.icon;
-              const isExpanded = mobileExpanded[item.id];
-              return (
-                <li key={item.id} className="mobile-drawer__item">
-                  <div className="mobile-drawer__row">
-                    <button
-                      type="button"
-                      className="mobile-drawer__link"
-                      onClick={() => handleNavClick(item.path)}
-                    >
-                      <Icon size={17} />
-                      <span>{item.label}</span>
-                    </button>
-                    <button
-                      type="button"
-                      className="mobile-drawer__expand"
-                      onClick={() => toggleMobileCategory(item.id)}
-                      aria-label="Expand submenu"
-                    >
-                      <ChevronDown size={17} className={isExpanded ? 'is-open' : ''} />
-                    </button>
-                  </div>
+        <>
+          <div className="mobile-overlay" onClick={() => setMobileOpen(false)} />
+          <div className="mobile-drawer">
+            <div className="mobile-drawer__header">
+              <div className="flex items-center gap-2">
+                <img src={iitmLogo} alt="IIT Madras" className="w-8 h-8 object-contain" />
+                <span className="mobile-drawer__header-title font-['Outfit'] font-bold text-base text-[#7A1F1F]">Menu Navigation</span>
+              </div>
+              <button
+                type="button"
+                className="mobile-drawer__close"
+                onClick={() => setMobileOpen(false)}
+                aria-label="Close menu"
+              >
+                <X size={20} />
+              </button>
+            </div>
 
-                  {isExpanded && (
-                    <div className="mobile-drawer__body">
-                      {item.sections.map((section) => (
-                        <div key={section.id} className="mobile-drawer__section">
-                          <span className="mobile-drawer__section-title">{section.label}</span>
-                          <ul>
-                            {section.children.map((child) => {
-                              const ChildIcon = child.icon || ChevronRight;
-                              return (
-                                <li key={child.id}>
-                                  <button
-                                    type="button"
-                                    onClick={() => handleNavClick(child.path, child.hash)}
-                                  >
-                                    <ChildIcon size={14} />
-                                    <span>{child.label}</span>
-                                  </button>
-                                </li>
-                              );
-                            })}
-                          </ul>
+            <div className="mobile-drawer__scroll">
+              <ul className="mobile-drawer__list">
+                {navigationItems.map((item) => {
+                  const Icon = item.icon;
+                  const isExpanded = mobileExpanded[item.id];
+                  const hasSections = item.sections && item.sections.length > 0;
+
+                  return (
+                    <li key={item.id} className="mobile-drawer__item">
+                      <div
+                        className="mobile-drawer__row cursor-pointer"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (hasSections) {
+                            toggleMobileCategory(item.id);
+                          } else {
+                            handleNavClick(item.path);
+                          }
+                        }}
+                      >
+                        <button
+                          type="button"
+                          className="mobile-drawer__link"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (hasSections) {
+                              toggleMobileCategory(item.id);
+                            } else {
+                              handleNavClick(item.path);
+                            }
+                          }}
+                        >
+                          <Icon size={17} />
+                          <span>{item.label}</span>
+                        </button>
+                        {hasSections && (
+                          <button
+                            type="button"
+                            className="mobile-drawer__expand"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleMobileCategory(item.id);
+                            }}
+                            aria-label="Expand submenu"
+                          >
+                            <ChevronDown size={17} className={isExpanded ? 'is-open' : ''} />
+                          </button>
+                        )}
+                      </div>
+
+                      {isExpanded && (
+                        <div className="mobile-drawer__body">
+                          {item.sections.map((section) => (
+                            <div key={section.id} className="mobile-drawer__section">
+                              <span className="mobile-drawer__section-title">{section.label}</span>
+                              <ul>
+                                {section.children.map((child) => {
+                                  const ChildIcon = child.icon || ChevronRight;
+                                  return (
+                                    <li key={child.id}>
+                                      <button
+                                        type="button"
+                                        onClick={(e) => {
+                                          e.stopPropagation();
+                                          handleNavClick(child.path, child.hash);
+                                        }}
+                                      >
+                                        <ChildIcon size={14} />
+                                        <span>{child.label}</span>
+                                      </button>
+                                    </li>
+                                  );
+                                })}
+                              </ul>
+                            </div>
+                          ))}
                         </div>
-                      ))}
-                    </div>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
+        </>
       )}
 
       <style>{`
@@ -268,9 +315,10 @@ export const Navbar = () => {
         }
 
         .site-header .container {
-          max-width: 1240px;
+          width: 95%;
+          max-width: 1480px;
           margin: 0 auto;
-          padding: 0 28px;
+          padding: 0 1rem;
         }
 
         /* ============ Top accent ============ */
@@ -282,13 +330,15 @@ export const Navbar = () => {
         /* ============ Brand row ============ */
         .site-header__brand-row {
           background: var(--bg);
+          padding-top: 14px;
+          padding-bottom: 14px;
         }
 
         .site-header__brand-inner {
           display: flex;
           align-items: center;
-          gap: 24px;
-          padding: 26px 28px 22px;
+          gap: 28px;
+          padding: 30px 0;
         }
 
         .brand {
@@ -298,6 +348,7 @@ export const Navbar = () => {
           text-decoration: none;
           color: inherit;
           margin-right: auto;
+          text-align: left;
         }
 
         .brand__logo {
@@ -311,6 +362,8 @@ export const Navbar = () => {
           display: flex;
           flex-direction: column;
           gap: 4px;
+          text-align: left;
+          align-items: flex-start;
         }
 
         .brand__title {
@@ -320,6 +373,7 @@ export const Navbar = () => {
           line-height: 1.2;
           color: var(--maroon);
           letter-spacing: -0.015em;
+          text-align: left;
         }
 
         .brand__subtitle {
@@ -329,6 +383,7 @@ export const Navbar = () => {
           color: var(--maroon-dark);
           letter-spacing: 0.04em;
           text-transform: uppercase;
+          text-align: left;
         }
 
         .sponsor-badge {
@@ -340,6 +395,7 @@ export const Navbar = () => {
           border-radius: var(--radius);
           background: var(--bg-subtle);
           flex-shrink: 0;
+          text-align: left;
         }
 
         .sponsor-badge__emblem svg {
@@ -360,6 +416,7 @@ export const Navbar = () => {
           display: flex;
           flex-direction: column;
           line-height: 1.3;
+          text-align: left;
         }
 
         .sponsor-badge__label {
@@ -367,17 +424,20 @@ export const Navbar = () => {
           text-transform: uppercase;
           letter-spacing: 0.06em;
           color: var(--ink-faint);
+          text-align: left;
         }
 
         .sponsor-badge__names {
           font-size: 12.5px;
           font-weight: 600;
           color: var(--maroon);
+          text-align: left;
         }
 
         .sponsor-badge__govt {
           font-size: 10.5px;
           color: var(--ink-soft);
+          text-align: left;
         }
 
         .mobile-toggle {
@@ -392,16 +452,21 @@ export const Navbar = () => {
 
         /* ============ Menu row ============ */
         .site-nav {
+          display: flex;
+          justify-content: center;
+          width: 100%;
           background: var(--bg-subtle);
           border-top: 1px solid var(--border);
         }
 
         .site-nav__list {
           display: flex;
+          justify-content: center;
+          align-items: center;
           list-style: none;
-          margin: 0;
+          margin: 0 auto;
           padding: 0;
-          gap: 2px;
+          gap: 4px;
         }
 
         .site-nav__item {
@@ -573,16 +638,82 @@ export const Navbar = () => {
           background: var(--maroon-dark);
         }
 
-        /* ============ Mobile drawer ============ */
+        /* ============ Mobile right sliding drawer ============ */
+        .mobile-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.45);
+          backdrop-filter: blur(3px);
+          z-index: 998;
+          animation: mobile-fade-in 0.2s ease;
+        }
+
+        @keyframes mobile-fade-in {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+
         .mobile-drawer {
+          position: fixed;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          width: 320px;
+          max-width: 85vw;
+          height: 100vh;
           background: var(--bg);
-          border-top: 1px solid var(--border);
+          box-shadow: -8px 0 32px rgba(0, 0, 0, 0.18);
+          z-index: 999;
+          display: flex;
+          flex-direction: column;
+          border-left: 1px solid var(--border);
+          animation: slide-in-right 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slide-in-right {
+          from { transform: translateX(100%); }
+          to { transform: translateX(0); }
+        }
+
+        .mobile-drawer__header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 16px 20px;
+          border-bottom: 1px solid var(--border);
+          background: var(--bg-subtle);
+        }
+
+        .mobile-drawer__close {
+          background: none;
+          border: 1px solid var(--border);
+          border-radius: 8px;
+          padding: 6px;
+          color: var(--ink-soft);
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: background 0.15s ease, color 0.15s ease;
+        }
+        .mobile-drawer__close:hover {
+          background: var(--maroon-tint);
+          color: var(--maroon);
+        }
+
+        .mobile-drawer__scroll {
+          flex: 1;
+          overflow-y: auto;
+          padding: 12px 16px 24px;
         }
 
         .mobile-drawer__list {
           list-style: none;
           margin: 0;
-          padding: 8px 12px 16px;
+          padding: 0;
         }
 
         .mobile-drawer__row {
