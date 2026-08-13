@@ -1,6 +1,7 @@
 import React from 'react';
 import heroSecond from './assets/hero-image.jpg';
-import { Award, IndianRupee, BookOpen, Users } from 'lucide-react';
+import { Building2 } from 'lucide-react';
+import { sponsors } from './data';
 
 export const HeroSection = () => {
   return (
@@ -17,41 +18,20 @@ export const HeroSection = () => {
           </h1>
           <span className="hero-gold-tag">DEPARTMENT OF CIVIL ENGINEERING • IIT MADRAS</span>
           <p className="hero-desc">
-            A national research and development center sponsored by the Ministry of Urban Development, Ministry of Electronics & IT, and Ministry of Education, Government of India.
+            Sponsored by the Ministry of Urban Development, the Ministry of Electronics and Information
+            Technology, and the Ministry of Education, Government of India.
           </p>
 
           <div className="hero-stats-grid">
-            <div className="hero-stat-card">
-              <div className="stat-icon-badge"><Award size={20} /></div>
-              <div className="stat-text-group">
-                <span className="stat-val">15+</span>
-                <span className="stat-lbl">Years R&D Leadership</span>
+            {sponsors.map((sp) => (
+              <div key={sp.id} className="hero-stat-card">
+                <div className="stat-icon-badge"><Building2 size={20} /></div>
+                <div className="stat-text-group">
+                  <span className="stat-val">{sp.abbr}</span>
+                  <span className="stat-lbl">{sp.name}</span>
+                </div>
               </div>
-            </div>
-
-            <div className="hero-stat-card">
-              <div className="stat-icon-badge"><IndianRupee size={20} /></div>
-              <div className="stat-text-group">
-                <span className="stat-val">₹17+ Cr</span>
-                <span className="stat-lbl">Research Grants</span>
-              </div>
-            </div>
-
-            <div className="hero-stat-card">
-              <div className="stat-icon-badge"><BookOpen size={20} /></div>
-              <div className="stat-text-group">
-                <span className="stat-val">250+</span>
-                <span className="stat-lbl">Publications</span>
-              </div>
-            </div>
-
-            <div className="hero-stat-card">
-              <div className="stat-icon-badge"><Users size={20} /></div>
-              <div className="stat-text-group">
-                <span className="stat-val">100+</span>
-                <span className="stat-lbl">Scholars Trained</span>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, MapPin, ExternalLink, Globe } from 'lucide-react';
+import { MapPin, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export const Footer = () => {
@@ -18,10 +18,12 @@ export const Footer = () => {
           <h4 className="footer-heading">Quick Navigation</h4>
           <ul className="footer-nav-list">
             <li><Link to="/about">About COE</Link></li>
-            <li><Link to="/research">Research & Corridors</Link></li>
-            <li><Link to="/labs">ITS & Simulation Laboratories</Link></li>
-            <li><Link to="/people">Faculty & Staff Directory</Link></li>
-            <li><Link to="/downloads">Downloads & Software Repositories</Link></li>
+            <li><Link to="/research">Research</Link></li>
+            <li><Link to="/labs">Laboratories</Link></li>
+            <li><Link to="/gallery">Gallery</Link></li>
+            <li><Link to="/people">People</Link></li>
+            <li><Link to="/downloads">Download Data</Link></li>
+            <li><Link to="/software">Signal Design Software</Link></li>
           </ul>
         </div>
 

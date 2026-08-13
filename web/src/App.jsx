@@ -5,8 +5,10 @@ import { Footer } from './Footer';
 import { About } from './About';
 import { Research } from './Research';
 import { Labs } from './Labs';
+import { Gallery } from './Gallery';
 import { People } from './People';
 import { Downloads } from './Downloads';
+import { SignalSoftware } from './SignalSoftware';
 
 import './styles.css';
 
@@ -21,8 +23,10 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/research" element={<Research />} />
             <Route path="/labs" element={<Labs />} />
+            <Route path="/gallery" element={<Gallery />} />
             <Route path="/people" element={<People />} />
             <Route path="/downloads" element={<Downloads />} />
+            <Route path="/software" element={<SignalSoftware />} />
             <Route path="*" element={<Navigate to="/about" replace />} />
           </Routes>
         </div>

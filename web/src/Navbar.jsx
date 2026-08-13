@@ -99,7 +99,8 @@ export const Navbar = () => {
           <ul className="site-nav__list flex justify-center items-center">
             {navigationItems.map((item) => {
               const Icon = item.icon;
-              const isOpen = openMenu === item.id;
+              const hasSections = item.sections && item.sections.length > 0;
+              const isOpen = hasSections && openMenu === item.id;
               const isCurrent = isActiveCategory(item);
 
               return (
@@ -116,63 +117,36 @@ export const Navbar = () => {
                   >
                     <Icon size={15} className="site-nav__icon" />
                     <span>{item.label}</span>
-                    <ChevronDown size={13} className="site-nav__chevron" />
+                    {hasSections && <ChevronDown size={13} className="site-nav__chevron" />}
                   </button>
 
-                  {/* Compact dropdown, anchored to this item only — not a full-width mega panel */}
+                  {/* Compact dropdown, anchored to this item only — icon + label, no prose */}
                   {isOpen && (
                     <div
                       className="dropdown"
                       onMouseEnter={() => openDropdown(item.id)}
                       role="menu"
                     >
-                      {item.description && (
-                        <p className="dropdown__intro">{item.description}</p>
-                      )}
-
-                      {item.sections.map((section) => {
-                        const SecIcon = section.icon || ChevronRight;
-                        return (
-                          <div key={section.id} className="dropdown__section">
-                            <h4 className="dropdown__section-title">
-                              <SecIcon size={13} />
-                              <span>{section.label}</span>
-                            </h4>
-                            <ul className="dropdown__list">
-                              {section.children.map((child) => {
-                                const ChildIcon = child.icon;
-                                return (
-                                  <li key={child.id}>
-                                    <button
-                                      type="button"
-                                      className="dropdown__link"
-                                      onClick={() => handleNavClick(child.path, child.hash)}
-                                      role="menuitem"
-                                    >
-                                      {ChildIcon && <ChildIcon size={14} className="dropdown__link-icon" />}
-                                      <span className="dropdown__link-text">
-                                        {child.label}
-                                        {child.desc && (
-                                          <em className="dropdown__link-desc">{child.desc}</em>
-                                        )}
-                                      </span>
-                                    </button>
-                                  </li>
-                                );
-                              })}
-                            </ul>
-                          </div>
-                        );
-                      })}
-
-                      <button
-                        type="button"
-                        className="dropdown__cta"
-                        onClick={() => handleNavClick(item.path)}
-                      >
-                        View all {item.label}
-                        <ChevronRight size={13} />
-                      </button>
+                      {item.sections.map((section) => (
+                        <ul key={section.id} className="dropdown__list">
+                          {section.children.map((child) => {
+                            const ChildIcon = child.icon;
+                            return (
+                              <li key={child.id}>
+                                <button
+                                  type="button"
+                                  className="dropdown__link"
+                                  onClick={() => handleNavClick(child.path, child.hash)}
+                                  role="menuitem"
+                                >
+                                  {ChildIcon && <ChildIcon size={15} className="dropdown__link-icon" />}
+                                  <span className="dropdown__link-text">{child.label}</span>
+                                </button>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      ))}
                     </div>
                   )}
                 </li>
@@ -523,13 +497,12 @@ export const Navbar = () => {
           position: absolute;
           top: calc(100% + 8px);
           left: 0;
-          min-width: 260px;
-          max-width: 320px;
+          min-width: 240px;
           background: var(--bg);
           border: 1px solid var(--border);
           border-radius: var(--radius);
           box-shadow: var(--shadow);
-          padding: 14px;
+          padding: 6px;
           z-index: 40;
           animation: dropdown-in 0.14s ease;
         }
@@ -539,61 +512,38 @@ export const Navbar = () => {
           to { opacity: 1; transform: translateY(0); }
         }
 
-        .dropdown__intro {
-          font-size: 12px;
-          color: var(--ink-soft);
-          line-height: 1.5;
-          margin: 0 0 12px;
-          padding-bottom: 12px;
-          border-bottom: 1px solid var(--border);
-        }
-
-        .dropdown__section + .dropdown__section {
-          margin-top: 12px;
-          padding-top: 12px;
-          border-top: 1px solid var(--border);
-        }
-
-        .dropdown__section-title {
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          margin: 0 0 6px;
-          font-size: 10.5px;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-          color: var(--maroon);
-        }
-
         .dropdown__list {
           list-style: none;
           margin: 0;
           padding: 0;
         }
 
+        .dropdown__list + .dropdown__list {
+          margin-top: 5px;
+          padding-top: 5px;
+          border-top: 1px solid var(--border);
+        }
+
         .dropdown__link {
           width: 100%;
           display: flex;
-          align-items: flex-start;
-          gap: 8px;
+          align-items: center;
+          gap: 10px;
           background: none;
           border: none;
           text-align: left;
           cursor: pointer;
-          padding: 7px 8px;
+          padding: 9px 11px;
           border-radius: 6px;
-          border-left: 2px solid transparent;
-          transition: background 0.12s ease, border-color 0.12s ease;
+          white-space: nowrap;
+          transition: background 0.12s ease, color 0.12s ease;
         }
 
         .dropdown__link:hover {
           background: var(--maroon-tint);
-          border-left-color: var(--maroon);
         }
 
         .dropdown__link-icon {
-          margin-top: 1px;
           color: var(--ink-faint);
           flex-shrink: 0;
         }
@@ -602,40 +552,12 @@ export const Navbar = () => {
         }
 
         .dropdown__link-text {
-          display: flex;
-          flex-direction: column;
-          gap: 1px;
-          font-size: 13px;
+          font-size: 13.5px;
           font-weight: 500;
           color: var(--ink);
         }
-
-        .dropdown__link-desc {
-          font-style: normal;
-          font-size: 11px;
-          font-weight: 400;
-          color: var(--ink-faint);
-        }
-
-        .dropdown__cta {
-          width: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 6px;
-          margin-top: 12px;
-          padding: 8px;
-          background: var(--maroon);
-          color: #fff;
-          border: none;
-          border-radius: 7px;
-          font-size: 12px;
-          font-weight: 600;
-          cursor: pointer;
-          transition: background 0.15s ease;
-        }
-        .dropdown__cta:hover {
-          background: var(--maroon-dark);
+        .dropdown__link:hover .dropdown__link-text {
+          color: var(--maroon);
         }
 
         /* ============ Mobile right sliding drawer ============ */
@@ -793,6 +715,10 @@ export const Navbar = () => {
         }
 
         /* ============ Responsive ============ */
+        @media (max-width: 1280px) {
+          .site-nav__trigger { padding: 14px 11px; font-size: 14px; }
+        }
+
         @media (max-width: 1024px) {
           .site-nav { display: none; }
           .mobile-toggle { display: inline-flex; }
