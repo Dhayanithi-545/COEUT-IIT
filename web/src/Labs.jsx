@@ -17,12 +17,14 @@ export const Labs = () => {
 
   return (
     <div className="labs-page">
-      <div className="page-header-strip">
-        <div className="container">
-          <span className="header-badge">Center of Excellence in Urban Transport • IIT Madras</span>
-          <h1 className="page-header-title">Laboratories under the Centre</h1>
+      {selectedLab.id === labs[0]?.id && (
+        <div className="page-header-strip">
+          <div className="container">
+            <span className="header-badge">Center of Excellence in Urban Transport • IIT Madras</span>
+            <h1 className="page-header-title">Laboratories under the Centre</h1>
+          </div>
         </div>
-      </div>
+      )}
 
       <main className="container page-content" style={{ paddingBottom: '4rem', paddingTop: '2rem' }}>
         <LabDetail lab={selectedLab} />

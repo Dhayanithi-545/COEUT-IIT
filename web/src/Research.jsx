@@ -37,7 +37,7 @@ export const Research = () => {
 
   return (
     <div className="research-page">
-      <div className="page-header-strip">
+      {/* <div className="page-header-strip">
         <div className="container">
           <span className="header-badge">Center of Excellence in Urban Transport • IIT Madras</span>
           <h1 className="page-header-title">Research</h1>
@@ -46,7 +46,7 @@ export const Research = () => {
             urban transport.
           </p>
         </div>
-      </div>
+      </div> */}
 
       <main className="container" style={{ paddingBottom: '4rem', paddingTop: '2rem' }}>
         {renderContent()}
