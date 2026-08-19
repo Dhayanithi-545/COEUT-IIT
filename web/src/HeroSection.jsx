@@ -17,10 +17,7 @@ export const HeroSection = () => {
             Center of Excellence in <span className="gold-text">Urban Transport</span>
           </h1>
           <span className="hero-gold-tag">DEPARTMENT OF CIVIL ENGINEERING • IIT MADRAS</span>
-          <p className="hero-desc">
-            Sponsored by the Ministry of Urban Development, the Ministry of Electronics and Information
-            Technology, and the Ministry of Education, Government of India.
-          </p>
+          
 
           <div className="hero-stats-grid">
             {sponsors.map((sp) => (

@@ -205,6 +205,7 @@ export const faculty = [
     department: 'Dept. of Civil Engineering',
     interests: 'Travel Demand Modeling, Network Optimization',
     link: 'https://civil.iitm.ac.in/faculty/karthikks/',
+    publicationLink: 'https://iitm.irins.org/profile/69325',
   },
   {
     id: 'lelitha',
@@ -213,6 +214,7 @@ export const faculty = [
     department: 'Dept. of Civil Engineering',
     interests: 'Traffic Flow Modelling, Intelligent Transport Systems, Traffic Operations',
     link: 'https://civil.iitm.ac.in/faculty/lelitha/',
+    publicationLink: 'https://iitm.irins.org/profile/50584',
   },
   {
     id: 'bhargava',
@@ -221,6 +223,7 @@ export const faculty = [
     department: 'Dept. of Civil Engineering',
     interests: 'Traffic Flow Theory, Numerical Methods and Simulations to Traffic Control',
     link: 'https://civil.iitm.ac.in/faculty/bhargava/',
+    publicationLink: 'https://iitm.irins.org/profile/69061',
   },
   {
     id: 'anmpahwa',
@@ -229,6 +232,7 @@ export const faculty = [
     department: 'Dept. of Civil Engineering',
     interests: 'Sustainable Transportation, Freight Transportation, City Logistics',
     link: 'https://civil.iitm.ac.in/faculty/anmpahwa/',
+    publicationLink: 'https://iitm.irins.org/profile/611688',
   },
 ];
 

@@ -114,29 +114,7 @@ const ReportsAndPublications = () => {
       </div>
 
       {/* Publications and Presentations */}
-      <div className="publications-stats-card coe-card">
-        <h3>Publications and Presentations</h3>
-        <p>
-          The researchers at the Centre of Excellence in Urban Transport, IIT Madras have published{' '}
-          <strong>twenty two international and national journal papers</strong> in the last year and a half
-          in leading journals including:
-        </p>
-        <ul className="journals-list">
-          {publicationStats.journals.map((j, i) => (
-            <li key={i}>
-              <CheckCircle2 size={16} /> {j}
-            </li>
-          ))}
-        </ul>
-        <p style={{ marginTop: '1rem' }}>
-          The research work being conducted at the Centre has also been presented in{' '}
-          <strong>25 international and national conferences</strong> in{' '}
-          {publicationStats.locations.join(', ')}.
-        </p>
-        <a href="#" className="coe-btn coe-btn-primary" style={{ marginTop: '1.25rem' }}>
-          <Download size={16} /> Click here to see Publications (PDF)
-        </a>
-      </div>
+      
     </div>
   );
 };
@@ -242,13 +220,13 @@ const Opportunities = () => {
         </div>
       </div>
 
-      <div className="coe-card recruitment-main-card">
+      {/* <div className="coe-card recruitment-main-card">
         <p className="lead-p">
           If you are interested in working at the Centre feel free to contact us anytime. We recruit year
           round and specific immediate openings, if any, are listed below.
         </p>
         <p className="empty-message">No immediate openings are listed at present.</p>
-      </div>
+      </div> */}
     </div>
   );
 };
