@@ -2583,6 +2583,67 @@ a:hover {
   line-height: 1.4;
 }
 
+/* Publications — faculty journal-link cards */
+.pub-faculty-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+.pub-faculty-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  border-top: 3px solid var(--coe-maroon);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.pub-faculty-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-top-color: var(--coe-gold);
+}
+
+.pub-faculty-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.pub-faculty-name {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  line-height: 1.35;
+  color: var(--coe-maroon-dark);
+}
+
+.pub-faculty-desig {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--coe-gold-muted);
+}
+
+.pub-faculty-dept {
+  font-size: 0.825rem;
+  color: var(--coe-text-muted);
+}
+
+.pub-faculty-link {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+@media (max-width: 520px) {
+  .pub-faculty-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .publications-stats-card h3 {
   font-size: 1.2rem;
   margin-bottom: 0.75rem;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { CalendarDays, CheckCircle2, Download, Briefcase } from 'lucide-react';
+import { CalendarDays, CheckCircle2, Download, Briefcase, ExternalLink } from 'lucide-react';
 import { PhotoGrid } from './PhotoGrid';
 import {
   researchAreas,
@@ -8,6 +8,7 @@ import {
   publicationStats,
   opportunitySkills,
   eventPhotos,
+  faculty,
 } from './data';
 
 export const Research = () => {
@@ -86,6 +87,35 @@ const ResearchOverview = () => {
 const ReportsAndPublications = () => {
   return (
     <div className="reports-root">
+      {/* Publications */}
+      <div className="section-intro-card coe-card" style={{ marginTop: '2rem' }}>
+        <h2>Publications</h2>
+        <p>
+          The researchers at the Centre of Excellence in Urban Transport, IIT Madras have published as
+          given in the below links.
+        </p>
+      </div>
+
+      <div className="pub-faculty-grid">
+        {faculty.map((f) => (
+          <div key={f.id} className="coe-card pub-faculty-card">
+            <div className="pub-faculty-meta">
+              <h4 className="pub-faculty-name">{f.name}</h4>
+              <p className="pub-faculty-desig">{f.designation}</p>
+              <p className="pub-faculty-dept">{f.department}</p>
+            </div>
+            <a
+              href={f.publicationLink}
+              className="coe-btn coe-btn-sm coe-btn-outline pub-faculty-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Publications of ${f.name}`}
+            >
+              Journal Link <ExternalLink size={14} />
+            </a>
+          </div>
+        ))}
+      </div>
       <div className="section-intro-card coe-card">
         <h2>Synthesis Reports</h2>
         <p>Draft synthesis reports in the following areas are complete:</p>
@@ -113,7 +143,6 @@ const ReportsAndPublications = () => {
         ))}
       </div>
 
-      {/* Publications and Presentations */}
       
     </div>
   );
