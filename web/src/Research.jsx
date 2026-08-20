@@ -23,8 +23,10 @@ export const Research = () => {
 
   const renderContent = () => {
     switch (activeSection) {
+      case 'publications':
+        return <Publications />;
       case 'reports':
-        return <ReportsAndPublications />;
+        return <ReportsAndTechnicalDocuments />;
       case 'corridors':
         return <StudyCorridors />;
       case 'events':
@@ -84,16 +86,12 @@ const ResearchOverview = () => {
   );
 };
 
-const ReportsAndPublications = () => {
+const Publications = () => {
   return (
     <div className="reports-root">
-      {/* Publications */}
       <div className="section-intro-card coe-card" style={{ marginTop: '2rem' }}>
         <h2>Publications</h2>
-        <p>
-          The researchers at the Centre of Excellence in Urban Transport, IIT Madras have published as
-          given in the below links.
-        </p>
+        <p>Journal publications from associated faculty members can be seen from the below links:</p>
       </div>
 
       <div className="pub-faculty-grid">
@@ -116,6 +114,13 @@ const ReportsAndPublications = () => {
           </div>
         ))}
       </div>
+    </div>
+  );
+};
+
+const ReportsAndTechnicalDocuments = () => {
+  return (
+    <div className="reports-root">
       <div className="section-intro-card coe-card">
         <h2>Synthesis Reports</h2>
         <p>Draft synthesis reports in the following areas are complete:</p>
@@ -142,8 +147,6 @@ const ReportsAndPublications = () => {
           </div>
         ))}
       </div>
-
-      
     </div>
   );
 };

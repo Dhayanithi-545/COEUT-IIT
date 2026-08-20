@@ -59,6 +59,7 @@ export const navigationItems = [
         icon: FlaskConical,
         children: [
           { id: 'overview', label: 'Research Areas', path: '/research', hash: 'overview', icon: FlaskConical },
+          { id: 'publications', label: 'Publications', path: '/research', hash: 'publications', icon: FileText },
           { id: 'reports', label: 'Reports & Technical Documents', path: '/research', hash: 'reports', icon: FileText },
         ],
       },
