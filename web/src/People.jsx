@@ -73,16 +73,6 @@ const FacultySection = () => {
               >
                 View Profile <ExternalLink size={14} />
               </a>
-              {f.publicationLink && (
-                <a
-                  href={f.publicationLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="coe-btn coe-btn-secondary coe-btn-sm w-fit"
-                >
-                  Journals & Publications <ExternalLink size={14} />
-                </a>
-              )}
             </div>
           </div>
         ))}

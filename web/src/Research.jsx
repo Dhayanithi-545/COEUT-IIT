@@ -109,7 +109,7 @@ const Publications = () => {
               rel="noopener noreferrer"
               aria-label={`Publications of ${f.name}`}
             >
-              Journal Link <ExternalLink size={14} />
+              Journals & Publications <ExternalLink size={14} />
             </a>
           </div>
         ))}
