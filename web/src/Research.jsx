@@ -91,7 +91,7 @@ const Publications = () => {
     <div className="reports-root">
       <div className="section-intro-card coe-card" style={{ marginTop: '2rem' }}>
         <h2>Publications</h2>
-        <p>Journal publications from associated faculty members can be seen from the below links:</p>
+        <p>Journal publications and Patterns from associated faculty members can be seen from the below links:</p>
       </div>
 
       <div className="pub-faculty-grid">
