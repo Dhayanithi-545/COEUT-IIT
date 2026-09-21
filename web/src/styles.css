@@ -2167,6 +2167,79 @@ a:hover {
   min-width: 0;
 }
 
+@media (max-width: 768px) {
+  .documents-header {
+    padding-top: 1.4rem;
+  }
+
+  .documents-header h2 {
+    font-size: 1.9rem;
+  }
+
+  .document-entry {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.1rem 0;
+  }
+
+  .document-actions {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .document-action {
+    flex: 1 1 160px;
+    min-width: 0;
+  }
+
+  .software-main {
+    padding-top: 1.2rem;
+  }
+
+  .software-tabbar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.65rem;
+  }
+
+  .software-tabbar::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .software-tabbar::-webkit-scrollbar-thumb {
+    background: rgba(122, 31, 31, 0.2);
+    border-radius: 999px;
+  }
+
+  .software-tab {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .software-document-panel {
+    padding: 1rem;
+    border-radius: 16px;
+  }
+
+  .software-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .software-action {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .pdf-viewer-wrap iframe {
+    min-height: 420px;
+  }
+}
+
 .document-tag {
   display: inline-flex;
   align-items: center;
@@ -2250,13 +2323,15 @@ a:hover {
   margin-bottom: 1.5rem;
   padding-bottom: 0.75rem;
   border-bottom: 1px solid var(--coe-border);
+  position: relative;
 }
 
 .software-tab {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  padding: 0.8rem 1.1rem;
+  padding: 0.82rem 1.15rem;
   border-radius: 999px;
   border: 1px solid var(--coe-border);
   background: var(--coe-surface);
@@ -2264,12 +2339,21 @@ a:hover {
   font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
+  box-shadow: 0 1px 0 rgba(18, 18, 18, 0.02);
 }
 
-.software-tab:hover {
-  border-color: rgba(212, 160, 23, 0.5);
+.software-tab::after {
+  content: none;
+}
+
+.software-tab:hover,
+.software-tab:focus-visible {
+  border-color: rgba(122, 31, 31, 0.32);
   color: var(--coe-maroon-dark);
+  background: linear-gradient(180deg, #fff 0%, #fdf8ee 100%);
+  box-shadow: 0 8px 22px rgba(122, 31, 31, 0.08);
+  transform: translateY(-1px);
 }
 
 .software-tab.active {

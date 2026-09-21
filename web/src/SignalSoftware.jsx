@@ -1,12 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Code2, Download, ExternalLink, FileText, BookOpen } from 'lucide-react';
 
 export const SignalSoftware = () => {
-  const [activeTab, setActiveTab] = useState('cyclo-help');
+  const location = useLocation();
+  const navigate = useNavigate();
+  const hashTab = location.hash.replace('#', '');
+  const [activeTab, setActiveTab] = useState(hashTab === 'signal-code' ? 'signal-code' : 'cyclo-help');
 
   useEffect(() => {
+    const nextTab = hashTab === 'signal-code' ? 'signal-code' : 'cyclo-help';
+    setActiveTab(nextTab);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
+  }, [hashTab]);
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    navigate({ pathname: '/software', hash: `#${tab}` });
+  };
 
   const pdfDocuments = {
     'cyclo-help': {
@@ -45,7 +56,7 @@ export const SignalSoftware = () => {
         <div className="software-tabbar" role="tablist" aria-label="Signal design software documents">
           <button
             type="button"
-            onClick={() => setActiveTab('cyclo-help')}
+            onClick={() => handleTabChange('cyclo-help')}
             className={`software-tab ${activeTab === 'cyclo-help' ? 'active' : ''}`}
             aria-pressed={activeTab === 'cyclo-help'}
           >
@@ -54,7 +65,7 @@ export const SignalSoftware = () => {
           </button>
           <button
             type="button"
-            onClick={() => setActiveTab('signal-code')}
+            onClick={() => handleTabChange('signal-code')}
             className={`software-tab ${activeTab === 'signal-code' ? 'active' : ''}`}
             aria-pressed={activeTab === 'signal-code'}
           >

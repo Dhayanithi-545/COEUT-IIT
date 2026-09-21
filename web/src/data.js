@@ -124,7 +124,29 @@ export const navigationItems = [
     label: 'Signal Design Code & Software Cyclo Help',
     path: '/software',
     icon: Code2,
-    sections: [],
+    sections: [
+      {
+        id: 'software-documents',
+        label: 'Signal Design Documents',
+        icon: Code2,
+        children: [
+          {
+            id: 'cyclo-help-menu',
+            label: 'Cyclo Help',
+            path: '/software',
+            hash: 'cyclo-help',
+            icon: Code2,
+          },
+          {
+            id: 'signal-code-menu',
+            label: 'Signal Design Code & Documentation',
+            path: '/software',
+            hash: 'signal-code',
+            icon: Code2,
+          },
+        ],
+      },
+    ],
   },
 ];
 
