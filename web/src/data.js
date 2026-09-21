@@ -120,15 +120,8 @@ export const navigationItems = [
     ],
   },
   {
-    id: 'downloads',
-    label: 'Download Data',
-    path: '/downloads',
-    icon: Download,
-    sections: [],
-  },
-  {
     id: 'software',
-    label: 'Signal Design Software',
+    label: 'Signal Design Code & Software Cyclo Help',
     path: '/software',
     icon: Code2,
     sections: [],
@@ -341,23 +334,71 @@ export const synthesisReports = [
   {
     category: 'Intelligent Transportation Systems (ITS)',
     reports: [
-      { id: 'its-synth', title: 'ITS Synthesis Report', fileUrl: '#' },
-      { id: 'bus-pred', title: 'Real Time Bus Arrival Time Prediction System', fileUrl: '#' },
-      { id: 'archive-data', title: 'Traffic Archive Data Management System', fileUrl: '#' },
-      { id: 'sensors-eval', title: 'Development and Evaluation of Traffic Sensors under Indian Traffic Conditions', fileUrl: '#' },
+      {
+        id: 'its-synth',
+        title: 'ITS Synthesis Report',
+        fileUrl: '/Reports/IIT Synthesis Report.pdf',
+        summary:
+          'The rapidly increasing vehicle population in India lays a critical burden on traffic management. Intelligent Transportation Systems (ITS) offer an established route to resolve traffic congestion. This report details why western ITS solutions require adaptation for Indian mixed-traffic conditions, reviews global and domestic ITS implementations, and presents actionable recommendations.',
+      },
+      {
+        id: 'bus-pred',
+        title: 'Real Time Bus Arrival Time Prediction System',
+        fileUrl: '/Reports/Real Time Bus Arrival Time Prediction System.pdf',
+        summary:
+          'Presents a real-time bus arrival time prediction system developed using GPS data filtration and Kalman Filtering Techniques (KFT) tailored for Indian traffic conditions. Details real-world trials across Chennai bus routes (21L, 21G, 5C, 19B) and multi-mode passenger information dissemination via VMS, kiosks, and web applications.',
+      },
+      {
+        id: 'archive-data',
+        title: 'Traffic Archive Data Management System',
+        fileUrl: '/Reports/Traffic Archive Data Management System.pdf',
+        summary:
+          'Investigates the implementation of a traffic Archive Data Management System (ADMS) for Indian conditions. Compiles global best practices, specifies system architecture, data granularity, cost estimation models, and identifies public/private funding and operational frameworks.',
+      },
+      {
+        id: 'sensors-eval',
+        title: 'Development and Evaluation of Traffic Sensors under Indian Traffic Conditions',
+        fileUrl: '/Reports/Development and Evaluation of Traffic Sensors under Indian Traffic Conditions.pdf',
+        summary:
+          'Evaluates state-of-the-art traffic detection technologies—including video sensors (Collect-R, Trazer, Gridsmart), radar sensors (SmartSensor Wavetronix), transportable infrared loggers (TIRTL), and inductive loop detectors—under heterogeneous Indian traffic conditions lacking lane discipline.',
+      },
     ],
   },
   {
     category: 'Urban Traffic Congestion',
-    reports: [{ id: 'congestion-report', title: 'Report on Traffic Congestion', fileUrl: '#' }],
+    reports: [
+      {
+        id: 'congestion-report',
+        title: 'Report on Traffic Congestion',
+        fileUrl: '/Reports/Report on Traffic Congestion.pdf',
+        summary:
+          'Comprehensive analysis of urban traffic congestion, infrastructure capacity limits, vehicular growth trends, and data-driven management strategies to mitigate bottlenecking in metropolitan cities.',
+      },
+    ],
   },
   {
     category: 'Urban Transportation Planning',
-    reports: [{ id: 'planning-challenges', title: 'Urban Transportation Planning Challenges and Issues', fileUrl: '#' }],
+    reports: [
+      {
+        id: 'planning-challenges',
+        title: 'Urban Transportation Planning Challenges and Issues',
+        fileUrl: '/Reports/Urban Transportation Planning Challenges and Issues.pdf',
+        summary:
+          'Critically appraises urban transportation planning and travel demand modeling for Indian cities. Examines motorization impacts, mode choice dynamics, activity-based modeling, and policy evaluation under mixed traffic conditions.',
+      },
+    ],
   },
   {
     category: 'Advanced Traveller Information System (ATIS) for Indian Cities',
-    reports: [{ id: 'atis-after', title: 'After Study Report', fileUrl: '#' }],
+    reports: [
+      {
+        id: 'atis-after',
+        title: 'After Study Report',
+        fileUrl: '/Reports/After Study Report.pdf',
+        summary:
+          'Evaluates Advanced Traveller Information System (ATIS) field deployments in Indian cities, analyzing user response, performance metrics, and travel time reliability improvements.',
+      },
+    ],
   },
 ];
 

@@ -120,31 +120,51 @@ const Publications = () => {
 
 const ReportsAndTechnicalDocuments = () => {
   return (
-    <div className="reports-root">
-      <div className="section-intro-card coe-card">
-        <h2>Synthesis Reports</h2>
-        <p>Draft synthesis reports in the following areas are complete:</p>
-      </div>
+    <div className="documents-page">
+      <header className="documents-header">
+        <p className="eyebrow">Centre Publications</p>
+        <h2>Reports &amp; Technical Documents</h2>
+        <p>
+          Synthesis reports, technical documentation, and research publications completed by the Centre.
+        </p>
+      </header>
 
-      <div className="reports-categories-grid">
+      <div className="documents-list">
         {synthesisReports.map((cat, idx) => (
-          <div key={idx} className="coe-card report-cat-card">
+          <section key={idx} className="document-category">
             <h3>{cat.category}</h3>
-            <ul className="reports-list">
+            <ul className="document-list">
               {cat.reports.map((rep) => (
-                <li key={rep.id} className="report-item">
-                  <h4 className="report-title">{rep.title}</h4>
-                  <a
-                    href={rep.fileUrl}
-                    className="coe-btn coe-btn-sm coe-btn-outline"
-                    aria-label={`Download ${rep.title}`}
-                  >
-                    <Download size={14} /> PDF
-                  </a>
+                <li key={rep.id} className="document-entry">
+                  <div className="document-copy">
+                    <span className="document-tag">PDF Report</span>
+                    <h4>{rep.title}</h4>
+                    {rep.summary && <p>{rep.summary}</p>}
+                  </div>
+
+                  <div className="document-actions">
+                    <a
+                      href={rep.fileUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="document-action document-action-secondary"
+                      aria-label={`View ${rep.title}`}
+                    >
+                      <ExternalLink size={14} /> View PDF
+                    </a>
+                    <a
+                      href={rep.fileUrl}
+                      download
+                      className="document-action document-action-primary"
+                      aria-label={`Download ${rep.title}`}
+                    >
+                      <Download size={14} /> Download
+                    </a>
+                  </div>
                 </li>
               ))}
             </ul>
-          </div>
+          </section>
         ))}
       </div>
     </div>

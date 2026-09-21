@@ -1,41 +1,103 @@
-import React, { useEffect } from 'react';
-import { Code2, Download, FileText } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Code2, Download, ExternalLink, FileText, BookOpen } from 'lucide-react';
 
 export const SignalSoftware = () => {
+  const [activeTab, setActiveTab] = useState('cyclo-help');
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
+
+  const pdfDocuments = {
+    'cyclo-help': {
+      id: 'cyclo-help',
+      title: 'Cyclo Help Guide (Streamlit)',
+      badge: 'Cyclo Software Documentation',
+      icon: BookOpen,
+      pdfPath: '/Reports/Signal design code and software cyclo help/Cyclo-Help · Streamlit.pdf',
+      description:
+        'Comprehensive user manual and operating instructions for the Cyclo interactive signal design tool developed by the Centre.',
+    },
+    'signal-code': {
+      id: 'signal-code',
+      title: 'Documentation & Code for Signal Design',
+      badge: 'Signal Design Technical Code',
+      icon: Code2,
+      pdfPath: '/Reports/Signal design code and software cyclo help/Documentation and code for signal design.pdf',
+      description:
+        'Technical formulations, algorithm specifications, and reference source code documentation for traffic signal timing design.',
+    },
+  };
+
+  const currentDoc = pdfDocuments[activeTab];
+  const IconComponent = currentDoc.icon;
 
   return (
     <div className="software-page">
       <div className="page-header-strip">
         <div className="container">
-          <span className="header-badge">Center of Excellence in Urban Transport • IIT Madras</span>
-          <h1 className="page-header-title">Signal Design Software</h1>
+          <span className="header-badge">Center of Excellence in Urban Transport &bull; IIT Madras</span>
+          <h1 className="page-header-title">Signal Design Code &amp; Software Cyclo Help</h1>
         </div>
       </div>
 
-      <main className="container" style={{ paddingBottom: '4rem', paddingTop: '2rem' }}>
-        <div className="coe-card cyclo-main-card">
-          <div className="cyclo-header">
-            <span className="cyclo-badge">
-              <Code2 size={14} /> Signal Design Software
-            </span>
-          </div>
-          <h2 className="cyclo-title">Cyclo</h2>
-          <p className="cyclo-desc">
-            Download the signal design software developed at the Centre, along with its help documentation.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-3" style={{ marginTop: '1.5rem' }}>
-            <a href="#" className="coe-btn coe-btn-primary">
-              <Download size={16} /> Download Cyclo
-            </a>
-            <a href="#" className="coe-btn coe-btn-outline">
-              <FileText size={16} /> Cyclo Help
-            </a>
-          </div>
+      <main className="container software-main">
+        <div className="software-tabbar" role="tablist" aria-label="Signal design software documents">
+          <button
+            type="button"
+            onClick={() => setActiveTab('cyclo-help')}
+            className={`software-tab ${activeTab === 'cyclo-help' ? 'active' : ''}`}
+            aria-pressed={activeTab === 'cyclo-help'}
+          >
+            <BookOpen size={18} />
+            <span>Cyclo Help</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveTab('signal-code')}
+            className={`software-tab ${activeTab === 'signal-code' ? 'active' : ''}`}
+            aria-pressed={activeTab === 'signal-code'}
+          >
+            <Code2 size={18} />
+            <span>Signal Design Code &amp; Documentation</span>
+          </button>
         </div>
+
+        <article className="software-document-panel">
+          <div className="software-document-header">
+            <span className="software-document-badge">
+              <IconComponent size={14} /> {currentDoc.badge}
+            </span>
+            <h2>{currentDoc.title}</h2>
+            <p>{currentDoc.description}</p>
+          </div>
+
+          <div className="software-actions">
+            <a
+              href={currentDoc.pdfPath}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="software-action software-action-primary"
+            >
+              <ExternalLink size={16} /> Open PDF
+            </a>
+            <a
+              href={currentDoc.pdfPath}
+              download
+              className="software-action software-action-secondary"
+            >
+              <Download size={16} /> Download
+            </a>
+          </div>
+
+          <div className="pdf-viewer-wrap">
+            <iframe
+              src={`${currentDoc.pdfPath}#view=FitH`}
+              title={currentDoc.title}
+              loading="lazy"
+            />
+          </div>
+        </article>
       </main>
     </div>
   );
