@@ -137,7 +137,7 @@ const ReportsAndTechnicalDocuments = () => {
               {cat.reports.map((rep) => (
                 <li key={rep.id} className="document-entry">
                   <div className="document-copy">
-                    <span className="document-tag">PDF Report</span>
+                    {/* <span className="document-tag">PDF Report</span> */}
                     <h4>{rep.title}</h4>
                     {rep.summary && <p>{rep.summary}</p>}
                   </div>
