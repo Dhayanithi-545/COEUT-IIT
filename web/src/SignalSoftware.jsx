@@ -19,26 +19,27 @@ export const SignalSoftware = () => {
     navigate({ pathname: '/software', hash: `#${tab}` });
   };
 
-  const pdfDocuments = {
-    'cyclo-help': {
-      id: 'cyclo-help',
-      title: 'Cyclo Help Guide (Streamlit)',
-      badge: 'Cyclo Software Documentation',
-      icon: BookOpen,
-      pdfPath: '/Reports/Signal design code and software cyclo help/Cyclo-Help · Streamlit.pdf',
-      description:
-        'Comprehensive user manual and operating instructions for the Cyclo interactive signal design tool developed by the Centre.',
-    },
-    'signal-code': {
-      id: 'signal-code',
-      title: 'Documentation & Code for Signal Design',
-      badge: 'Signal Design Technical Code',
-      icon: Code2,
-      pdfPath: '/Reports/Signal design code and software cyclo help/Documentation and code for signal design.pdf',
-      description:
-        'Technical formulations, algorithm specifications, and reference source code documentation for traffic signal timing design.',
-    },
-  };
+const pdfDocuments = {
+  'cyclo-help': {
+    id: 'cyclo-help',
+    title: 'Cyclo Help Guide (Streamlit)',
+    badge: 'Cyclo Software Documentation',
+    icon: BookOpen,
+    pdfPath: '/Reports/Signal design code and software cyclo help/Cyclo-Help · Streamlit.pdf',
+    description:
+      'A comprehensive user guide for the Cyclo interactive signal design tool, covering the overall workflow, key features, input requirements, signal timing configuration, design options, results interpretation, and step-by-step instructions for using the Streamlit-based application.',
+  },
+
+  'signal-code': {
+    id: 'signal-code',
+    title: 'Documentation & Code for Signal Design',
+    badge: 'Signal Design Technical Code',
+    icon: Code2,
+    pdfPath: '/Reports/Signal design code and software cyclo help/Documentation and code for signal design.pdf',
+    description:
+      'A detailed technical reference for the signal design system, including the underlying traffic signal timing concepts, mathematical formulations, algorithm specifications, implementation logic, design calculations, and reference source code used to develop and operate the signal timing design solution.',
+  },
+};
 
   const currentDoc = pdfDocuments[activeTab];
   const IconComponent = currentDoc.icon;
@@ -101,13 +102,13 @@ export const SignalSoftware = () => {
             </a>
           </div>
 
-          <div className="pdf-viewer-wrap">
+          {/* <div className="pdf-viewer-wrap">
             <iframe
               src={`${currentDoc.pdfPath}#view=FitH`}
               title={currentDoc.title}
               loading="lazy"
             />
-          </div>
+          </div> */}
         </article>
       </main>
     </div>
