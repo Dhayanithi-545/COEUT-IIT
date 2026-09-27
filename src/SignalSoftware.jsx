@@ -23,21 +23,15 @@ const pdfDocuments = {
   'cyclo-help': {
     id: 'cyclo-help',
     title: 'Cyclo Help Guide (Streamlit)',
-    badge: 'Cyclo Software Documentation',
     icon: BookOpen,
     pdfPath: '/Reports/Signal design code and software cyclo help/Cyclo-Help · Streamlit.pdf',
-    description:
-      'A comprehensive user guide for the Cyclo interactive signal design tool, covering the overall workflow, key features, input requirements, signal timing configuration, design options, results interpretation, and step-by-step instructions for using the Streamlit-based application.',
   },
 
   'signal-code': {
     id: 'signal-code',
-    title: 'Documentation & Code for Signal Design',
-    badge: 'Signal Design Technical Code',
+    title: 'Traffic Signal Design Manual',
     icon: Code2,
     pdfPath: '/Reports/Signal design code and software cyclo help/Documentation and code for signal design.pdf',
-    description:
-      'A detailed technical reference for the signal design system, including the underlying traffic signal timing concepts, mathematical formulations, algorithm specifications, implementation logic, design calculations, and reference source code used to develop and operate the signal timing design solution.',
   },
 };
 
@@ -62,7 +56,7 @@ const pdfDocuments = {
             aria-pressed={activeTab === 'cyclo-help'}
           >
             <BookOpen size={18} />
-            <span>Cyclo Help</span>
+            <span>Cyclo Help Guide (Streamlit)</span>
           </button>
           <button
             type="button"
@@ -71,17 +65,13 @@ const pdfDocuments = {
             aria-pressed={activeTab === 'signal-code'}
           >
             <Code2 size={18} />
-            <span>Signal Design Code &amp; Documentation</span>
+            <span>Traffic Signal Design Manual</span>
           </button>
         </div>
 
         <article className="software-document-panel">
           <div className="software-document-header">
-            <span className="software-document-badge">
-              <IconComponent size={14} /> {currentDoc.badge}
-            </span>
             <h2>{currentDoc.title}</h2>
-            <p>{currentDoc.description}</p>
           </div>
 
           <div className="software-actions">
