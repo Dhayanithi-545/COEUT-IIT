@@ -121,7 +121,7 @@ export const navigationItems = [
   },
   {
     id: 'software',
-    label: 'Signal Design Code & Software Cyclo Help',
+    label: 'Signal Design Code & Software CycloHelp',
     path: '/software',
     icon: Code2,
     sections: [
@@ -132,7 +132,7 @@ export const navigationItems = [
         children: [
           {
             id: 'cyclo-help-menu',
-            label: 'Cyclo Help',
+            label: 'CycloHelp',
             path: '/software',
             hash: 'cyclo-help',
             icon: Code2,

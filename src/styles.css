@@ -2428,6 +2428,12 @@ a:hover {
   color: white;
 }
 
+.software-action-primary:hover,
+.software-action-primary:focus-visible {
+  background: linear-gradient(135deg, #8f2a2a 0%, #b24a4a 100%);
+  color: #ffffff;
+}
+
 .software-action-secondary {
   background: var(--coe-surface-alt);
   border: 1px solid var(--coe-border);

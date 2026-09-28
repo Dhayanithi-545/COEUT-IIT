@@ -22,7 +22,7 @@ export const SignalSoftware = () => {
 const pdfDocuments = {
   'cyclo-help': {
     id: 'cyclo-help',
-    title: 'Cyclo Help Guide (Streamlit)',
+    title: 'CycloHelp Software (Streamlit)',
     icon: BookOpen,
     pdfPath: '/Reports/Signal design code and software cyclo help/Cyclo-Help · Streamlit.pdf',
   },
@@ -37,6 +37,7 @@ const pdfDocuments = {
 
   const currentDoc = pdfDocuments[activeTab];
   const IconComponent = currentDoc.icon;
+  const isCycloHelp = activeTab === 'cyclo-help';
 
   return (
     <div className="software-page">
@@ -56,7 +57,7 @@ const pdfDocuments = {
             aria-pressed={activeTab === 'cyclo-help'}
           >
             <BookOpen size={18} />
-            <span>Cyclo Help Guide (Streamlit)</span>
+            <span>CycloHelp Software</span>
           </button>
           <button
             type="button"
@@ -76,20 +77,22 @@ const pdfDocuments = {
 
           <div className="software-actions">
             <a
-              href={currentDoc.pdfPath}
+              href={isCycloHelp ? 'https://cycloapp.streamlit.app/' : currentDoc.pdfPath}
               target="_blank"
               rel="noopener noreferrer"
               className="software-action software-action-primary"
             >
-              <ExternalLink size={16} /> Open PDF
+              <ExternalLink size={16} /> {isCycloHelp ? 'Software' : 'Open PDF'}
             </a>
-            <a
-              href={currentDoc.pdfPath}
-              download
-              className="software-action software-action-secondary"
-            >
-              <Download size={16} /> Download
-            </a>
+            {!isCycloHelp && (
+              <a
+                href={currentDoc.pdfPath}
+                download
+                className="software-action software-action-secondary"
+              >
+                <Download size={16} /> Download
+              </a>
+            )}
           </div>
 
           {/* <div className="pdf-viewer-wrap">
